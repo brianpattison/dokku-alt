@@ -67,6 +67,9 @@ else
 endif
 	sleep 2 # give docker a moment i guess
 
+aufs:
+	lsmod | grep aufs || modprobe aufs || apt-get install -qq -y linux-image-extra-`uname -r` > /dev/null
+
 install: docker dpkg
 	sudo dpkg -i $(DEB_PKG) || sudo apt-get -f -y install && sudo dpkg -i $(DEB_PKG)
 
