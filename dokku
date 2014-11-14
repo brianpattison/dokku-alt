@@ -111,11 +111,11 @@ case "$1" in
 
       # start the app
       if is_image_buildstep_based "$IMAGE_GENERIC:$TAG"; then
-        START_CMD="/start"
+        START_CMD="/shoreman"
       else
         START_CMD=""
       fi
-      
+
       id=$(docker run --cidfile="$(get_cid_file_name app)" -d --name="$(get_app_container_name app)" $DOCKER_ARGS "$IMAGE_GENERIC:$TAG" $START_CMD)
 
       EXT_IP="$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$id")"
