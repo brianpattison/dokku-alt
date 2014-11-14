@@ -22,6 +22,10 @@ help:
 	# Type "make dpkg_stable" to build and commit stable version.
 	# Type "make dpkg_beta" to build and commit beta version.
 
+docker:
+	echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
+	apt-get update
+
 dpkg:
 	rm -f dokku-alt-*.deb
 	rm -rf deb-tmp/
@@ -54,7 +58,7 @@ endif
 	fakeroot dpkg-deb --build deb-tmp/dokku-alt $(DEB_PKG)
 	rm -rf deb-tmp/
 
-install: dpkg
+install: docker dpkg
 	sudo dpkg -i $(DEB_PKG) || sudo apt-get -f -y install && sudo dpkg -i $(DEB_PKG)
 
 devinstall:
