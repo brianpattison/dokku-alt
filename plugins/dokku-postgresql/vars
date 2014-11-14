@@ -4,7 +4,7 @@ source "$(dirname $0)/../dokku_common"
 source "$(dirname $0)/../dokku_common_database"
 
 DB_ROOT="$DOKKU_ROOT/.pgsql"
-DB_IMAGE="${POSTGRESQL_IMAGE:-ayufan/dokku-alt-postgresql}"
+DB_IMAGE="${POSTGRESQL_IMAGE:-dokkuinstaller/postgres}"
 DB_VOLUME="$DB_ROOT/postgresql"
 DB_ADMIN_USER="${POSTGRESQL_USER:-root}"
 DB_ADMIN_PASSWORD="$DB_ROOT/postgresql_password"

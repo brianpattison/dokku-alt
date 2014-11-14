@@ -202,8 +202,8 @@ Typically an application will require some environment variables to run properly
 
 The `config` plugin provides the following commands to manage your variables:
 ```
-config <app> - display the config vars for an app  
-config:get <app> KEY - display a config value for an app  
+config <app> - display the config vars for an app
+config:get <app> KEY - display a config value for an app
 config:set <app> KEY1=VALUE1 [KEY2=VALUE2 ...] - set one or more config vars
 config:unset <app> KEY1 [KEY2 ...] - unset one or more config vars
 ```
@@ -375,7 +375,7 @@ Example:
 * `BUILDSTEP_IMAGE` – buildstep image to be used by Docker, defaults to [`ayufan/dokku-alt-buildstep:foreman`](https://registry.hub.docker.com/u/ayufan/dokku-alt-buildstep/).
 * `MARIADB_IMAGE` – Docker image to be used for MariaDB plugin, defaults to [`ayufan/dokku-alt-mariadb`](https://registry.hub.docker.com/u/ayufan/dokku-alt-mariadb/).
 * `MONGODB_IMAGE` – Docker image to be used for MongoDB plugin, defaults to [`ayufan/dokku-alt-mongodb`](https://registry.hub.docker.com/u/ayufan/dokku-alt-mongodb/).
-* `POSTGRESQL_IMAGE` – Docker image to be used for PostgreSQL plugin, defaults to [`ayufan/dokku-alt-postgresql`](https://registry.hub.docker.com/u/ayufan/dokku-alt-postgresql/).
+* `POSTGRESQL_IMAGE` – Docker image to be used for PostgreSQL plugin, defaults to [`dokkuinstaller/postgres`](https://registry.hub.docker.com/u/dokkuinstaller/postgres/).
 * `REDIS_IMAGE` – Docker image to be used for Redis plugin, defaults to [`ayufan/dokku-alt-redis`](https://registry.hub.docker.com/u/ayufan/dokku-alt-redis/).
 * `DOKKU_LISTEN_IPV4` - Set the IPV4 address on which NGINX will listen for requests
 * `DOKKU_LISTEN_IPV6` - Set the IPV6 address on which NGINX will listen for requests
