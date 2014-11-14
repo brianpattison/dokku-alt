@@ -53,8 +53,21 @@ endif
 endif
 	fakeroot dpkg-deb --build deb-tmp/dokku-alt $(DEB_PKG)
 	rm -rf deb-tmp/
+docker: aufs
+	apt-get install -qq -y curl
+	egrep -i "^docker" /etc/group || groupadd docker
+	usermod -aG docker dokku
+	curl --silent https://get.docker.io/gpg | apt-key add -
+	echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
+	apt-get update
+ifdef DOCKER_VERSION
+	apt-get install -qq -y lxc-docker-${DOCKER_VERSION}
+else
+	apt-get install -qq -y lxc-docker
+endif
+	sleep 2 # give docker a moment i guess
 
-install: dpkg
+install: docker dpkg
 	sudo dpkg -i $(DEB_PKG) || sudo apt-get -f -y install && sudo dpkg -i $(DEB_PKG)
 
 devinstall:
