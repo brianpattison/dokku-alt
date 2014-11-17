@@ -8,8 +8,10 @@ hostnames_for_app "$1"
 
 cat
 
-if config_get DOKKU_CHECKS_WAIT >/dev/null || 
-    config_get DOKKU_CHECKS_TIMEOUT >/dev/null || 
+echo "check-preboot"
+
+if config_get DOKKU_CHECKS_WAIT >/dev/null ||
+    config_get DOKKU_CHECKS_TIMEOUT >/dev/null ||
     config_get DOKKU_CHECKS_RETRY >/dev/null
 then
     CONTAINERID="$2"
@@ -29,6 +31,7 @@ then
     RETRY="${DOKKU_CHECKS_RETRY:-3}"
 
     # TODO: add support for CHECKS file
+	echo "Testing $hostname using http://$HOSTNAME:$PORT/"
     verbose "Testing $hostname using http://$HOSTNAME:$PORT/"
     if curl -s -o /dev/null -q --compressed --fail -H "Host: $hostname" --retry "$RETRY" --retry-delay "$WAIT" --location --max-time "$TIMEOUT" "http://$HOSTNAME:$PORT/"; then
         info "Server responded in timely manner"
