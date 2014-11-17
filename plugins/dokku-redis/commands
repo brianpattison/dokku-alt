@@ -8,6 +8,7 @@ case "$1" in
     verify_max_args 2 "$@"
 
     touch "$DB_VOLUME"
+	start_database_container
     info "Redis database created: $DB_CONTAINER"
     redeploy_app "$APP"
     ;;
