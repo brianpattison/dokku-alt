@@ -28,11 +28,17 @@ function generate_random_password() {
 }
 
 function stop_container() {
-	docker stop "$@" 1>/dev/null 2>/dev/null || true
+	is_running=$(docker ps | grep "$@")
+	if [[ -z $is_running ]]; then
+		docker stop "$@" 1>/dev/null 2>/dev/null || true
+	fi
 }
 
 function remove_container() {
-	docker rm "$@" 1>/dev/null 2>/dev/null || true
+	is_running=$(docker ps | grep "$@")
+	if [[ -z $is_running ]]; then
+		docker rm "$@" 1>/dev/null 2>/dev/null || true
+	fi
 }
 
 function stop_and_remove_container() {
