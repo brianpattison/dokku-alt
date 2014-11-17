@@ -28,9 +28,8 @@ function generate_random_password() {
 }
 
 function stop_container() {
-	is_running=$(docker ps | grep "$@")
-	if docker inspect "$DB_CONTAINER" >/dev/null 2>/dev/null; then
-		echo "Stop Container"
+	if docker inspect "$@" >/dev/null 2>/dev/null; then
+		echo "Stop Container $@"
 		docker stop "$@" 1>/dev/null 2>/dev/null || true
 	else
 		echo "Not Running [stop_container]"
@@ -38,9 +37,8 @@ function stop_container() {
 }
 
 function remove_container() {
-	is_running=$(docker ps | grep "$@")
-	if docker inspect "$DB_CONTAINER" >/dev/null 2>/dev/null; then
-		echo "Remove Container"
+	if docker inspect "$@" >/dev/null 2>/dev/null; then
+		echo "Remove Container $@"
 		docker rm "$@" 1>/dev/null 2>/dev/null || true
 	else
 		echo "Not Running [remove_container]"
