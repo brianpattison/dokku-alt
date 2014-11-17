@@ -29,15 +29,21 @@ function generate_random_password() {
 
 function stop_container() {
 	is_running=$(docker ps | grep "$@")
-	if [[ -z $is_running ]]; then
+	if docker inspect "$DB_CONTAINER" >/dev/null 2>/dev/null; then
+		echo "Stop Container"
 		docker stop "$@" 1>/dev/null 2>/dev/null || true
+	else
+		echo "Not Running [stop_container]"
 	fi
 }
 
 function remove_container() {
 	is_running=$(docker ps | grep "$@")
-	if [[ -z $is_running ]]; then
+	if docker inspect "$DB_CONTAINER" >/dev/null 2>/dev/null; then
+		echo "Remove Container"
 		docker rm "$@" 1>/dev/null 2>/dev/null || true
+	else
+		echo "Not Running [remove_container]"
 	fi
 }
 
